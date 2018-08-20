@@ -215,6 +215,10 @@ if (Test-Path $MODULES_PACKAGES_CONFIG) {
 if (!(Test-Path $CAKE_EXE)) {
     Throw "Could not find Cake.exe at $CAKE_EXE"
 }
+else
+{
+	Write-Verbose -Message ($CAKE_EXE | out-string)
+}
 
 
 
@@ -228,6 +232,8 @@ if ($DryRun) { $cakeArguments += "-dryrun" }
 if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }
 $cakeArguments += $ScriptArgs
+
+Write-Verbose -Message ($cakeArguments | out-string)
 
 # Start Cake
 Write-Host "Running build script..."
