@@ -17,10 +17,10 @@ var _solutions = GetFiles("./**/*.sln");
 var _solutionPaths = _solutions.Select(solution => solution.GetDirectory());
 
 // TESTS
-string _unitTestsProjGlob = "./Tests/**/bin/" + _configuration + "/**/*.Tests.Unit.dll";
+//string _unitTestsProjGlob = "./Tests/**/bin/" + _configuration + "/**/*.Tests.Unit.dll";
 
 // BUILD
-var _artifactsDir = Directory("./artifacts");
+//var _artifactsDir = Directory("./artifacts");
 
 ///////////////////////////////////////////////////////////////////////////////
 // Setup
@@ -47,7 +47,7 @@ Task("Clean")
         Information("Cleaning {0}", path);
         CleanDirectories(path + "/**/bin");
         CleanDirectories(path + "/**/obj");
-        CleanDirectory(_artifactsDir);
+        //CleanDirectory(_artifactsDir);
     }
 });
 
@@ -116,62 +116,13 @@ Task("Build")
     }
 });
 
-Task("Test-Unit")
-    .Description("Runs all unit tests.")
-    .Does(() => {
-        Information("Running unit tests...");
-        var testAssemblies = GetFiles(_unitTestsProjGlob);
-        XUnitTest(testAssemblies);
-    });
+//Task("Test-Unit")
+//    .Description("Runs all unit tests.")
+//   .Does(() => {
+//      Information("Running unit tests...");
+//      var testAssemblies = GetFiles(_unitTestsProjGlob);
+//      XUnitTest(testAssemblies);
+//  });
 
-///////////////////////////////////////////////////////////////////////////////
-// DEFAULT TARGETS CALLED FROM TEAM CITY
-///////////////////////////////////////////////////////////////////////////////
-Task("Pull-Request")
-    .Description("Runs on TeamCity after creating a PR.")
-    .Does(() => {
-        Information("Hello TeamCity! I'm running the Pull-Request target now!");
-    });
-
-Task("Build-Release")
-    .Description("Create a new release and provide package ready for deployment")
-    .Does(() => {
-        Information("Hello TeamCity! I'm running the Build-Release target now!");
-    });
-
-Task("Release-To-Testing")
-    .Description("Deploys the release to the testing environment and runs acceptance tests")
-    .Does(() => {
-        Information("Hello TeamCity! I'm running the Release-To-Testing target now!");
-
-        Information("Hello TeamCity! I'm deploying the release to testing now!");
-        
-        Information("Hello TeamCity! I'm running the acceptance tests on testing now!");
-    });
-
-Task("Release-To-Acceptance")
-    .Description("Deploys the release to the testing environment and runs acceptance tests")
-    .Does(() => {
-        Information("Hello TeamCity! I'm running the Release-To-Testing target now!");
-
-        Information("Hello TeamCity! I'm deploying the release to testing now!");
-        
-        Information("Hello TeamCity! I'm running the acceptance tests on testing now!");
-    });
-
-Task("Release-To-Production")
-    .Description("Deploys the release to the testing environment and runs acceptance tests")
-    .Does(() => {
-        Information("Hello TeamCity! I'm running the Release-To-Testing target now!");
-
-        Information("Hello TeamCity! I'm deploying the release to testing now!");
-        
-        Information("Hello TeamCity! I'm running the acceptance tests on testing now!");
-    });
-
-Task("Default")
-    .Description("This is the default task which will run if no specific target is passed in.")
-    .IsDependentOn("Pull-Request")
-    .Does(() => { Warning("No 'Target' was passed in, so we ran the TeamCity 'Pull-Request' operation."); });
 
 RunTarget(_target);
