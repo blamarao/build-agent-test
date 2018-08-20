@@ -72,7 +72,8 @@ Task("Restore")
     .Description("Restores all the NuGet packages that are used by the specified solution.")
     .Does(() =>
 {
-    string rawPackageSources = EnvironmentVariable("PackageSources");
+    //string rawPackageSources = EnvironmentVariable("PackageSources");
+	string rawPackageSources = "https://api.nuget.org/v3/index.json";
     IList<string> packageSources = null;
 
     if (!string.IsNullOrEmpty(rawPackageSources))
