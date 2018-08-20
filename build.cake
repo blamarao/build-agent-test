@@ -4,7 +4,7 @@
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
 
-var _target = Argument<string>("target", "Default");
+var _target = Argument<string>("target", "Build");
 var _configuration = Argument<string>("configuration", "Release");
 var _verbosity = Argument<Cake.Core.Diagnostics.Verbosity>("verbosity", 0);
 var _version = Argument<string>("packVersion", "0.0.1");
