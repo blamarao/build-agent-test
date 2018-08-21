@@ -15,14 +15,21 @@ namespace build_agent_test
 
         public class GlobalPosition
         {
-            private (double, double) _coordinates;
+            private readonly double _latitude;
+            private readonly double _longitude;
+
+            public string Position
+            {
+                get => $"{_latitude}-{_longitude}";
+            }
 
             public GlobalPosition(double latitude, double longitude)
             {
-                _coordinates = (latitude, longitude);
+                _latitude = latitude;
+                _longitude = longitude;
             }
 
-            public string PrintMe() => $"Your current position is {_coordinates.Item1},{_coordinates.Item2}";
+            public string PrintMe() => $"Your current position is {Position}";
         }
     }
 }
