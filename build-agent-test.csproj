@@ -4,12 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net462</TargetFramework>
     <RootNamespace>build_agent_test</RootNamespace>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
 
-  
+
 </Project>
